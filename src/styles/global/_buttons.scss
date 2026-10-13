@@ -3,18 +3,18 @@
 @use "./paragraphs";
 
 .btn {
-  @include utils.font-sizer(1.6, 2, 76.8, 150, 1.8);
+  @include utils.font-sizer(1.6, 1.8, 76.8, 150, 1.6);
   position: relative;
   display: inline-block;
   padding: 1rem 3em;
   transition: all 0.3s ease;
   border: 0.1rem solid $primaryColor;
-  border-radius: 1;
+  border-radius: 2.3rem;
   background-color: $primaryColor;
   box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.3);
   color: $whiteColor;
   font-family: $primaryFont;
-  font-weight: 500;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.3;
