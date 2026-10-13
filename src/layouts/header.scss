@@ -16,12 +16,6 @@
 
   &-wrapper {
     position: relative;
-    margin: 0 !important;
-    margin-bottom: 0 !important;
-    padding: 0 !important;
-    padding-bottom: 3.3rem !important;
-    width: 100% !important;
-    max-width: 100% !important;
     z-index: 100;
   }
 
@@ -37,14 +31,22 @@
     z-index: 101;
 
     @media (min-width: 768px) {
-      width: 25.6rem;
+      width: 25rem;
       max-width: 100%;
     }
 
     @media (min-width: 1025px) {
-      width: 25.6rem;
+      width: 27.5rem;
       margin-top: 0;
       margin-bottom: 0;
+    }
+
+    @media (min-width: 1040px) {
+      width: 30rem;
+    }
+
+    @media (min-width: 1200px) {
+      width: 37.78rem;
     }
 
     a {
@@ -78,7 +80,16 @@
 
     @media (min-width: 1025px) {
       display: flex;
-      width: calc(100% - 25.6rem);
+      width: calc(100% - 27.5rem);
+    }
+
+    @media (min-width: 1040px) {
+      display: flex;
+      width: calc(100% - 30rem);
+    }
+
+    @media (min-width: 1200px) {
+      width: calc(100% - 37.78rem);
     }
   }
 

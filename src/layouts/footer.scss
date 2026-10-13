@@ -3,28 +3,49 @@
 
 .footer {
   position: relative;
-  padding: 5rem 0;
-  background-color: $primaryColor;
 
-  &-wrapper {
+  &-wrapper-top {
     align-items: center;
+    margin-bottom: 0.25rem;
+    padding: 0;
+    background: linear-gradient(
+      to right,
+      $secondaryColor 0%,
+      $secondaryColor 70%,
+      $whiteColor 70%,
+      $whiteColor 100%
+    );
+
+    &-container {
+      padding: 0 !important;
+    }
   }
 
-  &-social {
-    padding: 3rem 0;
-    .social-media-links {
-      .social-media-link {
-        &.linkedin-link {
-          a {
-            background-color: $accentColor;
+  &-nav {
+    background-color: $secondaryColor;
+    width: 100%;
+    padding: 2rem 2rem;
 
-            &:hover {
-              background-color: $shadowColor;
-            }
-          }
-        }
-      }
+    @media (min-width: 768px) {
+      width: calc(100% - 30rem);
     }
+  }
+
+  &-logo {
+    width: 100%;
+    padding: 2rem 2rem;
+    background-color: $whiteColor;
+
+    @media (min-width: 768px) {
+      width: calc(30rem);
+    }
+  }
+
+  &-wrapper-bot {
+    align-items: center;
+    margin-top: 0.25rem;
+    padding: 2rem 0;
+    background-color: $accentColor;
   }
 
   &-policy {

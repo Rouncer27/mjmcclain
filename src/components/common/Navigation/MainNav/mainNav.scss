@@ -19,35 +19,41 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
 
       @media (min-width: 768px) {
         padding-left: 0rem;
+        justify-content: center;
       }
 
       @media (min-width: 1025px) {
         padding-left: 0;
+        justify-content: flex-end;
+      }
+
+      @media (min-width: 1200px) {
+        padding-left: 0;
+        justify-content: flex-end;
       }
 
       li {
-        @extend .p-two;
+        @extend .p-three;
         margin: 0 1rem;
 
         @media (min-width: 1025px) {
-          margin: 0 2.25rem;
+          margin: 0 2rem;
         }
 
         a {
-          @extend .p-two;
+          @extend .p-three;
           display: inline-block;
-          padding: 1.5rem 0.5rem;
-          border-top: 0.2rem solid transparent;
+          padding: 1.5rem 0.25rem;
           border-bottom: 0.2rem solid transparent;
-          color: $whiteColor;
+          color: $blackColor;
           text-transform: uppercase;
 
           @media (min-width: 1025px) {
-            padding: 0.5rem;
+            padding: 0.25rem;
           }
 
           &:hover {
@@ -60,18 +66,11 @@
         a.main-nav-current {
           font-weight: bold;
           color: $accentColor;
-          border-top-color: $accentColor;
           border-bottom-color: $accentColor;
 
           &:hover {
             cursor: default;
           }
-        }
-
-        &.phone-number a {
-          padding: 1rem;
-          color: #f4bb60;
-          border: 0.2rem solid #f4bb60;
         }
 
         .main-nav-sub-menu {
@@ -147,6 +146,8 @@
 
         a {
           @extend .btn-two;
+          padding-left: 2.5rem;
+          padding-right: 2.5rem;
           color: $whiteColor;
         }
       }
