@@ -1,0 +1,107 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.hero {
+  position: relative;
+  min-height: 100rem;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    min-height: 65rem;
+  }
+
+  @media (min-width: 1024px) {
+    min-height: 80rem;
+  }
+
+  &-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+
+    &-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+  }
+
+  &-graphic {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 10vw;
+    overflow: hidden;
+    z-index: 1000;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      z-index: 1;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #1e3e65, $alpha: 0.65);
+    z-index: 100;
+
+    &-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      width: 100%;
+      max-width: 95rem;
+      height: 100%;
+      padding: 12.5rem 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      @extend .hl-one;
+      margin-bottom: 5rem;
+      color: $whiteColor;
+    }
+
+    h3 {
+      @extend .hl-two;
+      margin-bottom: 5rem;
+      color: $whiteColor;
+    }
+
+    p {
+      @extend .p-one;
+      margin-bottom: 5rem;
+      color: $whiteColor;
+    }
+  }
+}

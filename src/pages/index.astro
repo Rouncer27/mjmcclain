@@ -1,48 +1,41 @@
 ---
-import Button from "../components/common/shared/Button.astro";
-import Headline from "../components/common/shared/Headline.astro";
-import Paragraph from "../components/common/shared/Paragraph.astro";
-import Wrapper from "../components/common/shared/Wrapper.astro";
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Home/Hero/Hero.astro";
+
+import { Page_Seo_Query } from "../data/page/queries";
+import { Hero_Query } from "../data/home/queries";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+      query homePageQuery {
+        page(id: "/", idType: URI) {
+          ${Page_Seo_Query}
+          homePage {
+            ${Hero_Query}
+          }
+        }
+      }
+	  `,
+  }),
+});
+
+const {
+  data: {
+    page: { seoMetaTags, homePage },
+  },
+} = await response.json();
 ---
 
-<Layout>
-  <h1>Home Page</h1>
-  <Wrapper>
-    <div>
-      <Headline ele="h1" hlstyle="one">
-        Aliquam tincidunt mauris eu risus.
-      </Headline>
-      <Headline ele="h2" hlstyle="two">
-        Aliquam tincidunt mauris eu risus.
-      </Headline>
-      <Paragraph ele="p" pstyle="one">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-        hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet
-        vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin
-        laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu
-        nibh. Nullam mollis. Ut justo. Suspendisse potenti.
-      </Paragraph>
-      <Paragraph ele="p" pstyle="two">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-        hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet
-        vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin
-        laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu
-        nibh. Nullam mollis. Ut justo. Suspendisse potenti.
-      </Paragraph>
-      <Paragraph ele="p" pstyle="three">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-        hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet
-        vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin
-        laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu
-        nibh. Nullam mollis. Ut justo. Suspendisse potenti.
-      </Paragraph>
-      <Button ele="a" btnstyle="one">
-        Click Here
-      </Button>
-      <Button ele="a" btnstyle="two">
-        Click Here
-      </Button>
-    </div>
-  </Wrapper>
+<Layout
+  metaImg={seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={seoMetaTags.seoMetaInformation.metaDescription}
+  isHome={true}
+>
+  <Hero data={homePage.hero} />
 </Layout>

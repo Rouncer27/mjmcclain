@@ -1,0 +1,60 @@
+---
+import "./hero.scss";
+import { Image } from "astro:assets";
+
+const {
+  heroImage,
+  heroTitle,
+  heroContent,
+  heroContentBig,
+  heroButtonText,
+  heroButtonLink,
+} = Astro.props.data;
+
+const imageSrc = heroImage?.node?.sourceUrl;
+const imageAlt = heroImage?.node?.altText || "";
+
+import Button from "../../common/shared/Button.astro";
+---
+
+<div class="hero">
+  <div class="hero-background">
+    <Image
+      src={imageSrc}
+      alt={imageAlt}
+      format="webp"
+      widths={[800, 1200, 1600, 2000]}
+      sizes="100vw"
+      loading="eager"
+      inferSize={true}
+      class="hero-background-img"
+    />
+  </div>
+  <div class="hero-content">
+    <div class="hero-content-container">
+      <div>
+        <h2 set:html={heroTitle} />
+        <h3 set:html={heroContentBig} />
+      </div>
+
+      <div set:html={heroContent} />
+      <div>
+        <Button ele="a" btnstyle="one" href={heroButtonLink.edges[0].node.uri}>
+          {heroButtonText}
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck
+  import { gsap } from "gsap";
+  const image = document.querySelectorAll(".hero-background img");
+  const tl = gsap.timeline();
+  tl.add("start").from(
+    image,
+    { filter: "blur(100px)", duration: 2.2 },
+    "start",
+  );
+</script>
