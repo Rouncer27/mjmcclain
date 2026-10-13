@@ -1,0 +1,43 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/buttons";
+@use "../../../styles/global/paragraphs";
+@use "../../../styles/global/headlines";
+
+.main-content {
+  &-title {
+    width: 100%;
+
+    h2 {
+      @extend .hl-one;
+      color: $accentColor;
+    }
+  }
+
+  &-wysiwyg {
+    width: 100%;
+
+    h2 {
+      @extend .hl-two;
+    }
+
+    h3 {
+      @extend .hl-three;
+    }
+
+    p,
+    li,
+    a {
+      @extend .p-three;
+    }
+
+    a:hover {
+      color: $primaryColor;
+    }
+
+    ul {
+      li {
+        @extend .p-three;
+      }
+    }
+  }
+}

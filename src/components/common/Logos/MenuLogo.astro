@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+import "./menuLogo.scss";
+---
+
+<div class="menu-logo">
+  <div class="menu-logo-wrapper">
+    <Image
+      src={Astro.props.data.node.sourceUrl}
+      alt={Astro.props.data.node.altText}
+      inferSize={true}
+    />
+  </div>
+</div>

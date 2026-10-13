@@ -1,0 +1,57 @@
+@use "../../../../../../styles/abstracts/" as *;
+@use "../../../../../../styles/global/paragraphs.scss";
+
+.main-form-input {
+  width: calc(100%);
+  margin-bottom: 3rem;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 2rem);
+    margin-right: 2rem;
+  }
+
+  &-full {
+    @media (min-width: 768px) {
+      width: calc(100% - 2rem);
+      margin-right: 2rem;
+    }
+  }
+
+  label {
+    @extend .p-two;
+    display: block;
+    width: 100%;
+    color: $blackColor;
+    padding-left: 1.5rem;
+
+    &:hover {
+      cursor: initial;
+    }
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      @extend .p-two;
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+  }
+
+  input {
+    @extend .p-two;
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 0.1rem solid transparent;
+    border-radius: 0;
+    background-color: #fff7eb;
+    color: $blackColor;
+  }
+
+  input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}

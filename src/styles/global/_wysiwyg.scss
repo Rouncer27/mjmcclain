@@ -1,0 +1,96 @@
+@use "../abstracts" as *;
+@use "./paragraphs";
+@use "./headlines";
+
+.base-wysiwyg {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .post-edit-link {
+    font-size: 1.6rem;
+  }
+
+  p {
+    @extend .p-one;
+
+    em {
+      font-style: italic;
+    }
+  }
+
+  a {
+    @extend .p-one;
+    transition: all 0.3s;
+    color: $primaryColor;
+    font-weight: bold;
+    font-size: 1em;
+
+    &:hover {
+      color: $blackColor;
+    }
+  }
+
+  h1 {
+    @extend .hl-one;
+  }
+
+  h2 {
+    @extend .hl-two;
+  }
+
+  h3 {
+    @extend .hl-three;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @extend .hl-four;
+  }
+
+  ul {
+    margin-bottom: 2.5rem;
+
+    li {
+      @extend .p-one;
+      color: $blackColor;
+      position: relative;
+      margin-bottom: 0.5em;
+      padding-left: 0.75em;
+
+      &::before {
+        position: absolute;
+        top: 0em;
+        left: 0;
+        padding-right: 0.5em;
+        color: rgba($blackColor, 0.75);
+        content: "\2022";
+      }
+    }
+  }
+
+  ol {
+    margin-bottom: 2.5rem;
+    padding-left: 1.25em;
+
+    li {
+      @extend .p-one;
+      line-height: 1;
+      color: $blackColor;
+      position: relative;
+      margin-bottom: 0.5em;
+      list-style-type: decimal;
+    }
+  }
+
+  .no-margin {
+    margin-bottom: 0;
+  }
+}

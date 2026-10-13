@@ -1,0 +1,66 @@
+@use "../abstracts" as *;
+@use "../utils";
+@use "./paragraphs";
+
+.btn {
+  @include utils.font-sizer(1.6, 2, 76.8, 150, 1.8);
+  position: relative;
+  display: inline-block;
+  padding: 1rem 3em;
+  transition: all 0.3s ease;
+  border: 0.1rem solid $primaryColor;
+  border-radius: 1;
+  background-color: $primaryColor;
+  box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.3);
+  color: $whiteColor;
+  font-family: $primaryFont;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: normal;
+  text-align: center;
+  outline: none;
+  text-transform: uppercase;
+
+  &:focus {
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $tertiaryColor;
+    border-color: $tertiaryColor;
+    color: $whiteColor;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $tertiaryColor;
+      border-color: $tertiaryColor;
+      color: $whiteColor;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.btn-one {
+  @extend .btn;
+}
+
+.btn-two {
+  @extend .btn;
+  background-color: $secondaryColor;
+  border-color: $secondaryColor;
+  color: $whiteColor;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $tertiaryColor;
+    border-color: $tertiaryColor;
+    color: $whiteColor;
+  }
+}

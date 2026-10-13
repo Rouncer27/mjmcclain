@@ -1,0 +1,44 @@
+---
+import { Picture } from "astro:assets";
+import "./mainLogo.scss";
+
+// 1️⃣ Destructure incoming data
+const {
+  mainLogo: {
+    node: { sourceUrl, altText, mediaDetails: { width, height } = {} },
+  },
+} = Astro.props.data;
+
+// 2️⃣ Define JSON-LD Schema (Organization with Logo)
+const logoSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Praire Haven Homes",
+  url: "https://prairehavenhomes.com/",
+  logo: {
+    "@type": "ImageObject",
+    url: sourceUrl,
+    width,
+    height,
+    caption: altText,
+  },
+};
+
+// 3️⃣ Stringify for inline script
+const jsonLd = JSON.stringify(logoSchema, null, 2);
+---
+
+<div class="main-logo">
+  <div class="main-logo-wrapper">
+    <Picture
+      src={sourceUrl}
+      alt={altText}
+      width={width}
+      height={height}
+      formats={["avif", "webp"]}
+    />
+  </div>
+
+  <!-- 4️⃣ Inline JSON-LD Schema -->
+  <script type="application/ld+json" is:inline set:html={jsonLd} />
+</div>

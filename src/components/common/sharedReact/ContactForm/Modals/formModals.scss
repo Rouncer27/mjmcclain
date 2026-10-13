@@ -1,0 +1,101 @@
+@use "../../../../../styles/abstracts/" as *;
+@use "../../../../../styles/global/paragraphs";
+@use "../../../../../styles/global/buttons";
+
+.form-modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+
+  &-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2.5px);
+    z-index: 1;
+  }
+
+  &-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50rem;
+    padding: 4rem;
+    border-radius: 0.75rem;
+    border: 0.1rem solid $blackColor;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    background-color: $whiteColor;
+    text-align: center;
+    overflow-y: scroll;
+    z-index: 10;
+
+    &-icon {
+      width: 100%;
+
+      svg {
+        width: 10rem;
+      }
+    }
+
+    &-content {
+      width: 100%;
+      margin-top: 5rem;
+
+      p {
+        @extend .p-one;
+        margin-bottom: 0.75rem;
+      }
+
+      &-details {
+        width: 100%;
+
+        p {
+          @extend .p-two;
+          margin: 0;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+        }
+
+        ul {
+          margin-bottom: 1rem;
+
+          p {
+            @extend .p-two;
+            margin: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+          }
+
+          li {
+            @extend .p-two;
+            color: red;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+
+    &-button {
+      width: 100%;
+      margin-top: 2.5rem;
+
+      button {
+        @extend .btn-one;
+      }
+    }
+  }
+}

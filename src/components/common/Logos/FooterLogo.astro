@@ -1,0 +1,22 @@
+---
+import { Picture } from "astro:assets";
+import "./footerLogo.scss";
+
+const {
+  footerLogo: {
+    node: { sourceUrl, altText, mediaDetails: { width, height } = {} },
+  },
+} = Astro.props.data;
+---
+
+<div class="footer-logo-item">
+  <div class="footer-logo-item-wrapper">
+    <Picture
+      src={sourceUrl}
+      alt={altText}
+      width={width}
+      height={height}
+      formats={["avif", "webp"]}
+    />
+  </div>
+</div>

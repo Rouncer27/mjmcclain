@@ -1,0 +1,28 @@
+@use "../../../../styles/abstracts/" as *;
+@use "../../../../styles/global/paragraphs";
+
+.mobile-sub-menu {
+  display: block;
+
+  li {
+    width: 100%;
+
+    text-align: center;
+
+    &:last-of-type {
+      margin-bottom: 4rem;
+    }
+
+    a {
+      @extend .p-one;
+      display: inline-block;
+      color: $blackColor;
+      margin-top: 1rem;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $secondaryColor;
+      }
+    }
+  }
+}

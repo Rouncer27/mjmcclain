@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import "./heroHalf.scss";
+
+const { title, image } = Astro.props.data;
+
+const heroImageSrc = image?.node?.sourceUrl;
+const heroAlt = image?.node?.altText || "";
+---
+
+<div class="hero-half">
+  <div class="hero-half-title">
+    <div class="hero-half-title-inner">
+      <h1>{title}</h1>
+    </div>
+  </div>
+  <div class="hero-half-image">
+    <Image
+      src={heroImageSrc}
+      alt={heroAlt}
+      format="webp"
+      widths={[800, 1200, 1600, 2000]}
+      sizes="100vw"
+      loading="eager"
+      inferSize={true}
+      class=""
+    />
+  </div>
+</div>

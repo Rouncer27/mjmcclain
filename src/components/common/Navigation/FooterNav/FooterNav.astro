@@ -1,0 +1,26 @@
+---
+import "./footerNav.scss";
+---
+
+<nav class="footer-nav" role="navigation" aria-label="secondary">
+  <ul class="footer-nav-items">
+    {
+      Astro.props.items.map((item: any) => {
+        const classes = item.cssClasses.join(" ");
+        return (
+          <li class={`footer-nav-item ${classes}`}>
+            <a href={`${item.uri}`} title={item.label}>
+              {item.label}
+            </a>
+          </li>
+        );
+      })
+    }
+
+    <li class="footer-nav-item phone-number">
+      <a href={`tel: ${Astro.props.phoneNumber.phoneNumber}`}
+        >{Astro.props.phoneNumber.phoneNumberDisplay}</a
+      >
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,52 @@
+@use "../../../../styles/abstracts/" as *;
+@use "../../../../styles/global/headlines";
+@use "../../../../styles/global/paragraphs";
+
+.hero-half {
+  position: relative;
+  min-height: 35rem;
+
+  &-title {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+
+    &-inner {
+      width: 100%;
+      max-width: 75rem;
+      margin: 0 auto;
+      padding: 2.5rem;
+      background-color: $whiteColor;
+      text-align: center;
+    }
+
+    h1 {
+      @extend .hl-one;
+      margin: 0;
+      color: $tertiaryColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+  }
+}

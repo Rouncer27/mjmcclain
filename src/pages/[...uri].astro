@@ -1,0 +1,104 @@
+---
+// @ts-nocheck
+
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.WPGRAPHQL_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      query: `
+        query GetPages {
+          pages(first: 1000) {
+            nodes {
+              uri
+            }
+          }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+
+  return data.pages.nodes
+    .filter((page) => page?.uri && page.uri !== "/")
+    .map((page) => ({
+      params: {
+        uri: page.uri.replace(/^\/|\/$/g, ""), // remove slashes
+      },
+    }));
+}
+
+// 🟣🟣🟣 MODIFIED CODE START 🟣🟣🟣
+// 2️⃣ Safely rebuild the URI for WordPress GraphQL
+const uri = Astro.params.uri ? `/${Astro.params.uri}/` : "/";
+// 🟣🟣🟣 MODIFIED CODE END 🟣🟣🟣
+
+const response = await fetch(import.meta.env.WPGRAPHQL_URL, {
+  method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      query GetPage($uri: ID!) {
+        page(id: $uri, idType: URI) {
+          slug
+          template {
+            templateName
+          }
+        }
+      }
+    `,
+    variables: { uri },
+  }),
+});
+
+const { data } = await response.json();
+const page = data.page;
+
+// 🟣🟣🟣 MODIFIED CODE START 🟣🟣🟣
+// 4️⃣ Prevent build crash if WP returns null
+if (!page) {
+  throw new Error(`Page not found for URI: ${uri}`);
+}
+// 🟣🟣🟣 MODIFIED CODE END 🟣🟣🟣
+
+// Dynamic import based on template name
+const templateName = page?.template?.templateName?.toLowerCase() ?? "default";
+let TemplateComponent;
+
+switch (true) {
+  case templateName.includes("home"):
+    TemplateComponent = (await import("../templates/HomeTemplate.astro"))
+      .default;
+    break;
+  case templateName.includes("about"):
+    TemplateComponent = (await import("../templates/AboutTemplate.astro"))
+      .default;
+    break;
+  case templateName.includes("services"):
+    TemplateComponent = (await import("../templates/ServicesTemplate.astro"))
+      .default;
+    break;
+  case templateName.includes("inspiration"):
+    TemplateComponent = (await import("../templates/InspirationTemplate.astro"))
+      .default;
+    break;
+  case templateName.includes("faq"):
+    TemplateComponent = (await import("../templates/FaqTemplate.astro"))
+      .default;
+    break;
+  case templateName.includes("contact"):
+    TemplateComponent = (await import("../templates/ContactTemplate.astro"))
+      .default;
+    break;
+  case templateName.includes("privacy"):
+    TemplateComponent = (await import("../templates/PrivacyTemplate.astro"))
+      .default;
+    break;
+  default:
+    TemplateComponent = (await import("../templates/DefaultTemplate.astro"))
+      .default;
+}
+---
+
+<TemplateComponent slug={page.slug} />

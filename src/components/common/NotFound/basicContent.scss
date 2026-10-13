@@ -1,0 +1,34 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/buttons";
+@use "../../../styles/global/paragraphs";
+@use "../../../styles/global/headlines";
+
+.not-found-main {
+  background-color: rgba($accentColor, 0.6);
+
+  &-title {
+    width: 100%;
+    text-align: center;
+    padding-top: 40vh;
+
+    h2 {
+      @extend .hl-one;
+      color: $whiteColor;
+    }
+  }
+
+  &-content {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 25vh;
+
+    p {
+      @extend .p-three;
+      color: $whiteColor;
+    }
+
+    a {
+      @extend .btn-one;
+    }
+  }
+}

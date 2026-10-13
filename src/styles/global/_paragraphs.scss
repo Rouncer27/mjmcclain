@@ -1,0 +1,33 @@
+@use "../abstracts";
+@use "../utils";
+
+.paragraph-all {
+  color: abstracts.$blackColor;
+  font-family: abstracts.$primaryFont;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1.5;
+}
+
+.p-one,
+.p1 {
+  @include utils.font-sizer(2, 2.3, 76.8, 150, 2);
+  @extend .paragraph-all;
+  line-height: 1.3;
+}
+
+.p-two,
+.p2 {
+  @include utils.font-sizer(1.8, 1.9, 76.8, 150, 1.8);
+  @extend .paragraph-all;
+  line-height: 1.35;
+}
+
+.p-three,
+.p3 {
+  @include utils.font-sizer(1.6, 1.8, 76.8, 150, 1.6);
+  @extend .paragraph-all;
+  line-height: 1.44;
+}

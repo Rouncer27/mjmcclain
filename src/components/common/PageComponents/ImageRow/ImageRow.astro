@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import "./imageRow.scss";
+
+const { imageOne, imageTwo } = Astro.props.data;
+
+const imageOneSrc = imageOne?.node?.sourceUrl;
+const imageOneAlt = imageOne?.node?.altText || "";
+const imageTwoSrc = imageTwo?.node?.sourceUrl;
+const imageTwoAlt = imageTwo?.node?.altText || "";
+---
+
+<div class="image-row">
+  <div class="image-row-wrapper">
+    <div class="image-row-image image-one">
+      <div class="image-row-image-inner">
+        <Image
+          src={imageOneSrc}
+          alt={imageOneAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+    </div>
+    <div class="image-row-image image-two">
+      <div class="image-row-image-inner">
+        <Image
+          src={imageTwoSrc}
+          alt={imageTwoAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+    </div>
+  </div>
+  <div class="image-row-overlay"></div>
+</div>
