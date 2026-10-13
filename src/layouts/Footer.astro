@@ -8,7 +8,6 @@ import "./footer.scss";
 import {
   Logo_Options_Query,
   Footer_Menu_Query,
-  Social_Media_Links_Query,
   Contact_Information_Query,
 } from "../data/footer/queries";
 
@@ -22,7 +21,6 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
         query headerQuery {
           ${Logo_Options_Query}
           ${Footer_Menu_Query}
-          ${Social_Media_Links_Query}
           ${Contact_Information_Query}
         }
     `,
@@ -31,20 +29,17 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
 const {
   data: {
     footerLogo: { logoOptions },
-    socialMediaLinks,
     contactInformation: { contactInformation },
     footerMenu,
   },
 } = await response.json();
-
-console.log(contactInformation);
 ---
 
 <footer class="footer">
   <div class="footer-wrapper-top">
     <Wrapper classes="footer-wrapper-top-container">
       <div class="footer-nav">
-        <FooterNav items={footerMenu.menuItems.nodes} phoneNumber={""} />
+        <FooterNav items={footerMenu.menuItems.nodes} />
       </div>
       <div class="footer-logo">
         <FooterLogo data={logoOptions} />
@@ -55,8 +50,14 @@ console.log(contactInformation);
     <Wrapper>
       <div class="footer-address">
         <p>
-          {contactInformation.address} | Phone: {contactInformation.phone} |
-          email:{contactInformation.email}
+          {contactInformation.address} | Phone{" "}
+          <a href={`+1-${contactInformation.phoneNumber}`}>
+            {contactInformation.phoneNumber}
+          </a>{" "}
+          | Email{" "}
+          <a href={`mailto: ${contactInformation.email}`}>
+            {contactInformation.email}
+          </a>
         </p>
       </div>
       <div class="footer-policy">
