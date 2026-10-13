@@ -1,0 +1,88 @@
+---
+// @ts-ignore
+import { getOptimizedImages } from "../utils/helperFunctions";
+
+import MainNav from "../components/common/Navigation/MainNav/MainNav";
+import MobileNav from "../components/common/Navigation/MobileNav/MobileNav";
+import MainLogo from "../components/common/Logos/MainLogo.astro";
+import Wrapper from "../components/common/shared/Wrapper.astro";
+import "./header.scss";
+
+import {
+  Header_Menu_Query,
+  Mobile_Menu_Query,
+  Logo_Options_Query,
+  Social_Media_Links_Query,
+} from "../data/header/queries";
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query headerQuery {
+          ${Header_Menu_Query}
+          ${Mobile_Menu_Query}
+          ${Logo_Options_Query}
+          ${Social_Media_Links_Query}
+        }
+    `,
+  }),
+});
+const {
+  data,
+  data: {
+    menuTop: { menuItems: menuTopMenuItems },
+    mobile: { menuItems: mobile },
+    mainLogo: { logoOptions },
+    socialMediaLinks,
+  },
+} = await response.json();
+
+// Optimize Logo for Mobile Menu built in React. //
+const optimizedLogo = await getOptimizedImages(
+  logoOptions.mainLogo.node.sourceUrl,
+);
+
+const newLogoOptions = {
+  mainLogo: {
+    node: {
+      sourceUrl: optimizedLogo.src,
+      altText: logoOptions.mainLogo.node.altText,
+    },
+  },
+};
+
+const { isHome } = Astro.props;
+---
+
+<header class={`main-header${isHome ? " main-header-float" : ""}`}>
+  <Wrapper classes="main-header-wrapper">
+    <div class="main-header-logo">
+      <h1>
+        <a href="/">
+          <MainLogo data={logoOptions} />
+        </a>
+        <span>MJ McClain</span>
+      </h1>
+    </div>
+    <div class="main-header-navigation">
+      <MainNav
+        client:only="react"
+        menuItems={menuTopMenuItems.nodes}
+        pathname={Astro.url.pathname}
+      />
+    </div>
+  </Wrapper>
+  <div class="main-header-mobile">
+    <MobileNav
+      client:only="react"
+      mainMenu={mobile}
+      mainLogo={newLogoOptions}
+      socialMedia={socialMediaLinks}
+      pathname={Astro.url.pathname}
+    />
+  </div>
+</header>

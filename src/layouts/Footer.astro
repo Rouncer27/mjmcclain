@@ -1,0 +1,56 @@
+---
+import Wrapper from "../components/common/shared/Wrapper.astro";
+import FooterNav from "../components/common/Navigation/FooterNav/FooterNav.astro";
+import SocialMediaLinks from "../components/common/SocialMedia/SocialMediaLinks.astro";
+
+import "./footer.scss";
+
+import {
+  Logo_Options_Query,
+  Footer_Menu_Query,
+  Social_Media_Links_Query,
+} from "../data/footer/queries";
+import FooterLogo from "../components/common/Logos/FooterLogo.astro";
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query headerQuery {
+          ${Logo_Options_Query}
+          ${Footer_Menu_Query}
+          ${Social_Media_Links_Query}
+        }
+    `,
+  }),
+});
+const {
+  data: {
+    footerLogo: { logoOptions },
+    socialMediaLinks,
+    footerMenu,
+  },
+} = await response.json();
+---
+
+<footer class="footer">
+  <div class="footer-strip"></div>
+  <Wrapper classes="footer-wrapper">
+    <div class="footer-nav">
+      <FooterNav items={footerMenu.menuItems.nodes} phoneNumber={""} />
+    </div>
+    <div class="footer-social">
+      <SocialMediaLinks data={socialMediaLinks} />
+    </div>
+    <div class="footer-policy">
+      <ul>
+        <li>
+          <a href="/privacy-policy">Privacy Policy and Terms</a>
+        </li>
+      </ul>
+    </div>
+  </Wrapper>
+</footer>

@@ -1,4 +1,7 @@
 ---
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import CookieConsent from "../components/common/sharedReact/CookieConsent/CookieContent";
 // Import Global Styles
 import "../styles/styles.scss";
 // Import Fonts
@@ -54,6 +57,9 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
     <meta name="twitter:creator" content={"MJ McClain Accounting"} />
   </head>
   <body>
+    <Header />
     <slot />
+    <!-- <CookieConsent client:only="react" /> -->
+    <Footer />
   </body>
 </html>
