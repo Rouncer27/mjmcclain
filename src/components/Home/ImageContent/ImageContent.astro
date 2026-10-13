@@ -1,0 +1,55 @@
+---
+import Wrapper from "../../common/shared/Wrapper.astro";
+import { Image } from "astro:assets";
+import "./imageContent.scss";
+
+const { title, content, contentBold, imageMain, imageSecondary } =
+  Astro.props.data;
+
+const imageSrc = imageMain?.node?.sourceUrl;
+const imageAlt = imageMain?.node?.altText || "";
+const imageSecondarySrc = imageSecondary?.node?.sourceUrl;
+const imageSecondaryAlt = imageSecondary?.node?.altText || "";
+---
+
+<div class="image-content">
+  <Wrapper classes="image-content-wrapper">
+    <div class="image-content-main">
+      <div class="image-content-main-container">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+        <div class="image-content-main-graphic"></div>
+      </div>
+    </div>
+    <div class="image-content-content">
+      <div class="image-content-content-title">
+        <h2>{title}</h2>
+      </div>
+      <div class="image-content-content-main" set:html={content} />
+      <div class="image-content-content-bold" set:html={contentBold} />
+      <div class="image-content-content-image">
+        <div class="image-content-content-image-container">
+          <Image
+            src={imageSecondarySrc}
+            alt={imageSecondaryAlt}
+            format="webp"
+            widths={[800, 1200, 1600, 2000]}
+            sizes="100vw"
+            loading="eager"
+            inferSize={true}
+            class=""
+          />
+          <div class="image-content-content-image-container-graphic"></div>
+        </div>
+      </div>
+    </div>
+  </Wrapper>
+</div>

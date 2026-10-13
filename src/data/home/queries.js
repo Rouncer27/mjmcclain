@@ -23,3 +23,32 @@ export const Hero_Query = `
         }
     }
 `;
+
+export const Image_Content_Query = `
+    imageContent: imageContentComponent {
+        title
+        content
+        contentBold
+        imageMain {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+
+        imageSecondary {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+    }
+`;
