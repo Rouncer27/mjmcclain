@@ -45,11 +45,12 @@ export const Social_Media_Links_Query = `
     }
 `;
 
-export const Phone_Number_Query = `
-     phoneNumber: siteWideSettings {
-        phoneNumber {
+export const Contact_Information_Query = `
+     contactInformation: siteWideSettings {
+        contactInformation {
+            address
             phoneNumber
-            phoneNumberDisplay
+            email
         }
     }
 `;

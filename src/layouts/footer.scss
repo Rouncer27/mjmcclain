@@ -48,14 +48,20 @@
     background-color: $accentColor;
   }
 
-  &-policy {
+  &-address {
     width: calc(100%);
     text-align: center;
+
+    p {
+      @extend .p-two;
+      margin: 0;
+      color: $whiteColor;
+      font-weight: 500;
+    }
 
     a {
       @extend .p-two;
       color: $whiteColor;
-      text-transform: uppercase;
 
       &:hover {
         color: $secondaryColor;
@@ -63,14 +69,18 @@
     }
   }
 
-  &-copy {
+  &-policy {
     width: calc(100%);
+    margin-top: 1rem;
     text-align: center;
 
-    p {
-      @extend .p-one;
+    a {
+      @extend .p-two;
       color: $whiteColor;
-      margin-bottom: 0;
+
+      &:hover {
+        color: $secondaryColor;
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ import {
   Logo_Options_Query,
   Footer_Menu_Query,
   Social_Media_Links_Query,
+  Contact_Information_Query,
 } from "../data/footer/queries";
 
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
@@ -22,6 +23,7 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
           ${Logo_Options_Query}
           ${Footer_Menu_Query}
           ${Social_Media_Links_Query}
+          ${Contact_Information_Query}
         }
     `,
   }),
@@ -30,9 +32,12 @@ const {
   data: {
     footerLogo: { logoOptions },
     socialMediaLinks,
+    contactInformation: { contactInformation },
     footerMenu,
   },
 } = await response.json();
+
+console.log(contactInformation);
 ---
 
 <footer class="footer">
@@ -48,6 +53,12 @@ const {
   </div>
   <div class="footer-wrapper-bot">
     <Wrapper>
+      <div class="footer-address">
+        <p>
+          {contactInformation.address} | Phone: {contactInformation.phone} |
+          email:{contactInformation.email}
+        </p>
+      </div>
       <div class="footer-policy">
         <ul>
           <li>
