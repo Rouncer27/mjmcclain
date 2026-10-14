@@ -85,6 +85,15 @@
 
     &-link {
       width: 100%;
+
+      a {
+        background-color: $accentColor;
+
+        &:hover {
+          border-color: $secondaryColor;
+          background-color: $secondaryColor;
+        }
+      }
     }
   }
 }
