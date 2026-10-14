@@ -1,0 +1,60 @@
+---
+import "./calloutLink.scss";
+
+import whiteWeb from "../../../assets/white-web-graphic.png";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import Button from "../../common/shared/Button.astro";
+import { Image } from "astro:assets";
+
+const { title, content, imageOne, imageTwo, buttonText, buttonLink } =
+  Astro.props.data;
+
+const imageOneSrc = imageOne?.node?.sourceUrl;
+const imageOneAlt = imageOne?.node?.altText || "";
+const imageTwoSrc = imageTwo?.node?.sourceUrl;
+const imageTwoAlt = imageTwo?.node?.altText || "";
+---
+
+<div class="callout">
+  <Wrapper>
+    <div class="callout-title">
+      <h2>{title}</h2>
+    </div>
+    <div class="callout-content" set:html={content} />
+    <div class="callout-link">
+      <Button ele="a" btnstyle="one" href={buttonLink.edges[0].node.uri}>
+        {buttonText}
+      </Button>
+    </div>
+    <div class="callout-images">
+      <div>
+        <Image
+          src={imageOneSrc}
+          alt={imageOneAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+      <div>
+        <Image
+          src={imageTwoSrc}
+          alt={imageTwoAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+    </div>
+  </Wrapper>
+
+  <div class="callout-graphic">
+    <!-- <img src={whiteWeb.src} alt={"Web background"} /> -->
+  </div>
+</div>

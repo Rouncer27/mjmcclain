@@ -77,3 +77,38 @@ export const Block_Content_Query = `
         }
     }
 `;
+
+export const Callout_Link_Query = `
+    calloutLink: calloutLinkComponent {
+        title
+        content
+        buttonText
+        buttonLink {
+            edges {
+                node {
+                    uri
+                }
+            }
+        }
+        imageOne {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+        imageTwo {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+    }
+`;

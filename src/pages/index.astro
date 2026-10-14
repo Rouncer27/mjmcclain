@@ -3,12 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Home/Hero/Hero.astro";
 import ImageContent from "../components/Home/ImageContent/ImageContent.astro";
 import BlockContent from "../components/Home/BlockContent/BlockContent.astro";
+import CalloutLink from "../components/Home/CalloutLink/CalloutLink.astro";
 
 import { Page_Seo_Query } from "../data/page/queries";
 import {
   Hero_Query,
   Image_Content_Query,
   Block_Content_Query,
+  Callout_Link_Query,
 } from "../data/home/queries";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -25,6 +27,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
             ${Hero_Query}
             ${Image_Content_Query}
             ${Block_Content_Query}
+            ${Callout_Link_Query}
           }
         }
       }
@@ -48,4 +51,5 @@ const {
   <Hero data={homePage.hero} />
   <ImageContent data={homePage.imageContent} />
   <BlockContent data={homePage.blockContent} />
+  <CalloutLink data={homePage.calloutLink} />
 </Layout>
