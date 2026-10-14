@@ -10,6 +10,8 @@ $callout-bg-path: "./public/white-web-graphic.png";
   background-color: $primaryColor;
 
   &-title {
+    position: relative;
+    z-index: 100;
     width: 100%;
 
     h2 {
@@ -20,6 +22,8 @@ $callout-bg-path: "./public/white-web-graphic.png";
   }
 
   &-content {
+    position: relative;
+    z-index: 100;
     width: 100%;
 
     p {
@@ -29,13 +33,38 @@ $callout-bg-path: "./public/white-web-graphic.png";
   }
 
   &-link {
+    position: relative;
+    z-index: 100;
     width: 100%;
+
+    a {
+      background-color: $accentColor;
+
+      &:hover {
+        border-color: $secondaryColor;
+        background-color: $secondaryColor;
+      }
+    }
   }
 
   &-images {
+    position: relative;
+    z-index: 100;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
+    padding-top: 6rem;
+
+    &-one {
+      width: calc(50% - 1rem);
+      margin-right: 1rem;
+    }
+
+    &-two {
+      width: calc(50% - 1rem);
+      margin-left: 1rem;
+    }
   }
 
   &-graphic {
@@ -49,6 +78,7 @@ $callout-bg-path: "./public/white-web-graphic.png";
     background-size: cover;
     background-position: center;
     background-repeat: repeat;
+    z-index: 1;
 
     img {
       position: absolute;
