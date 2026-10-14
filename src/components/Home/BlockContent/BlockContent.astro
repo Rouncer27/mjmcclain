@@ -1,0 +1,41 @@
+---
+import "./blockContent.scss";
+import { Image } from "astro:assets";
+import Button from "../../common/shared/Button.astro";
+
+const { content, buttonText, buttonLink, iconContent, icon } = Astro.props.data;
+
+const imageSrc = icon?.node?.sourceUrl;
+const imageAlt = icon?.node?.altText || "";
+---
+
+<div class="block-content">
+  <div class="block-content-wrapper">
+    <div class="block-content-icon">
+      <div class="block-content-icon-container">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+      <div class="block-content-icon-content">
+        <h2 set:html={iconContent} />
+      </div>
+    </div>
+
+    <div class="block-content-main">
+      <div class="block-content-main-content" set:html={content} />
+      <div class="block-content-main-link">
+        <Button ele="a" btnstyle="two" href={buttonLink.edges[0].node.uri}>
+          {buttonText}
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>

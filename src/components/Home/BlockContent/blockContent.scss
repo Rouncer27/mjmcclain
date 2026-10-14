@@ -1,0 +1,90 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.block-content {
+  margin-bottom: 1rem;
+
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      $secondaryColor 0%,
+      $secondaryColor 45%,
+      $whiteColor 45%,
+      $whiteColor 55%,
+      $primaryColor 55%,
+      $primaryColor 100%
+    );
+  }
+
+  &-icon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 70rem;
+    background-color: $secondaryColor;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 0.5rem);
+      margin-right: 0.5rem;
+      padding: 5rem;
+    }
+
+    &-container {
+      position: absolute;
+      top: 5rem;
+      left: 0rem;
+      width: 45rem;
+    }
+
+    &-content {
+      margin-top: 20rem;
+      padding-bottom: 5rem;
+      text-align: center;
+
+      h2 {
+        @extend .hl-two;
+        color: $whiteColor;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 70rem;
+    background-color: $primaryColor;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 0.5rem);
+      margin-left: 0.5rem;
+      padding: 5rem 9rem;
+    }
+
+    &-content {
+      width: 100%;
+
+      p {
+        @extend .p-one;
+        color: $whiteColor;
+      }
+    }
+
+    &-link {
+      width: 100%;
+    }
+  }
+}

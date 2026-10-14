@@ -52,3 +52,28 @@ export const Image_Content_Query = `
         }
     }
 `;
+
+export const Block_Content_Query = `
+    blockContent: blockContentComponent {
+        content
+        buttonText
+        buttonLink {
+            edges {
+                node {
+                    uri
+                }
+            }
+        }
+        iconContent
+        icon {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+    }
+`;
