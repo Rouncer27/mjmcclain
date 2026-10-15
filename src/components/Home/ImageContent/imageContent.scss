@@ -10,8 +10,16 @@
   }
 
   &-main {
-    width: calc(30% - 4rem);
-    margin-right: 4rem;
+    width: calc(100%);
+    padding: 0 4rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      width: calc(30% - 4rem);
+      margin-right: 4rem;
+      margin-bottom: 0;
+      padding: 0;
+    }
 
     &-container {
       position: relative;
@@ -29,8 +37,14 @@
   }
 
   &-content {
-    width: calc(70% - 4rem);
-    margin-left: 4rem;
+    width: calc(100%);
+    margin-top: 3rem;
+
+    @media (min-width: 768px) {
+      width: calc(70% - 4rem);
+      margin-top: 0;
+      margin-left: 4rem;
+    }
 
     &-title {
       width: 100%;
@@ -62,7 +76,12 @@
 
     &-image {
       width: 100%;
-      margin-top: 10rem;
+      margin-top: 5rem;
+      padding: 0 4rem;
+
+      @media (min-width: 768px) {
+        margin-top: 10rem;
+      }
 
       &-container {
         position: relative;
