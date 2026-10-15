@@ -32,13 +32,13 @@ import Button from "../../common/shared/Button.astro";
   </div>
   <div class="hero-content">
     <div class="hero-content-container">
-      <div>
+      <div class="hero-content-container-title">
         <h2 set:html={heroTitle} />
         <h3 set:html={heroContentBig} />
       </div>
 
-      <div set:html={heroContent} />
-      <div>
+      <div class="hero-content-container-content" set:html={heroContent} />
+      <div class="hero-content-container-button">
         <Button ele="a" btnstyle="one" href={heroButtonLink.edges[0].node.uri}>
           {heroButtonText}
         </Button>
