@@ -51,19 +51,30 @@ $callout-bg-path: "./white-web-graphic.png";
     position: relative;
     z-index: 100;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding-top: 6rem;
 
     &-one {
-      width: calc(50% - 1rem);
-      margin-right: 1rem;
+      width: calc(100%);
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 768px) {
+        width: calc(50% - 1rem);
+        margin-right: 1rem;
+        margin-bottom: 0;
+      }
     }
 
     &-two {
-      width: calc(50% - 1rem);
-      margin-left: 1rem;
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(50% - 1rem);
+        margin-left: 1rem;
+      }
     }
   }
 
