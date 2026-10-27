@@ -1,0 +1,91 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.about-hero {
+  display: flex;
+  position: relative;
+  min-height: 40rem;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    min-height: 45rem;
+  }
+
+  @media (min-width: 1024px) {
+    min-height: 45rem;
+  }
+
+  &-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    background-color: rgba($color: #1e3e65, $alpha: 0.65);
+    z-index: 100;
+
+    &-container {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 120rem;
+      padding: 3rem 2rem;
+      text-align: center;
+
+      @media (min-width: 768px) {
+        padding: 2rem;
+      }
+
+      @media (min-width: 1025px) {
+      }
+
+      &-title {
+        width: 100%;
+
+        h2 {
+          @extend .hl-one;
+          margin-bottom: 4.2rem;
+          color: $whiteColor;
+        }
+      }
+
+      &-content {
+        width: 100%;
+
+        p {
+          @extend .hl-two;
+          margin-bottom: 0rem;
+          color: $whiteColor;
+        }
+      }
+    }
+  }
+}

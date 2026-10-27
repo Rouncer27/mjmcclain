@@ -1,0 +1,39 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.callout {
+  background-color: $secondaryColor;
+  margin: 0.75rem auto;
+  padding: 4rem 0;
+
+  &-content {
+    width: calc(100%);
+    text-align: center;
+
+    @media (min-width: 768px) {
+    }
+
+    &-title {
+      width: 100%;
+
+      h2 {
+        @extend .hl-two;
+        margin-top: 0;
+        color: $whiteColor;
+        font-weight: 600;
+      }
+    }
+
+    &-link {
+      width: 100%;
+      margin-top: 2.5rem;
+
+      a {
+        background-color: $accentColor;
+        border-color: $accentColor;
+        box-shadow: none;
+      }
+    }
+  }
+}
