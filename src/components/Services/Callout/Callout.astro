@@ -6,13 +6,13 @@ import Button from "../../common/shared/Button.astro";
 const { title, buttonLink, buttonText } = Astro.props.data;
 ---
 
-<div class="callout">
-  <Wrapper classes='callout-wrapper"'>
-    <div class="callout-content">
-      <div class="callout-content-title">
+<div class="services-callout">
+  <Wrapper classes='services-callout-wrapper"'>
+    <div class="services-callout-content">
+      <div class="services-callout-content-title">
         <h2>{title}</h2>
       </div>
-      <div class="callout-content-link">
+      <div class="services-callout-content-link">
         <Button ele="a" btnstyle="one" href={buttonLink.edges[0].node.uri}>
           {buttonText}
         </Button>

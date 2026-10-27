@@ -8,8 +8,8 @@ const imageSrc = heroImage?.node?.sourceUrl;
 const imageAlt = heroImage?.node?.altText || "";
 ---
 
-<div class="about-hero">
-  <div class="about-hero-background">
+<div class="services-hero">
+  <div class="services-hero-background">
     <Image
       src={imageSrc}
       alt={imageAlt}
@@ -21,13 +21,13 @@ const imageAlt = heroImage?.node?.altText || "";
       class=""
     />
   </div>
-  <div class="about-hero-content">
-    <div class="about-hero-content-container">
-      <div class="about-hero-content-container-title">
+  <div class="services-hero-content">
+    <div class="services-hero-content-container">
+      <div class="services-hero-content-container-title">
         <h2 set:html={heroTitle} />
       </div>
       <div
-        class="about-hero-content-container-content"
+        class="services-hero-content-container-content"
         set:html={heroContent}
       />
     </div>
