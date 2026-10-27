@@ -12,13 +12,12 @@
   &-main {
     width: calc(100%);
     padding: 0 4rem;
-    margin-bottom: 3rem;
+    margin-top: 3rem;
 
     @media (min-width: 768px) {
       width: calc(40% - 4rem);
       margin-left: 4rem;
       margin-top: 7.5rem;
-      margin-bottom: 0;
       padding: 0;
     }
 

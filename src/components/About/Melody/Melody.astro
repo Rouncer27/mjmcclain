@@ -1,7 +1,35 @@
 ---
 import "./melody.scss";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import { Image } from "astro:assets";
+
+const { title, content, image } = Astro.props.data;
+
+const imageSrc = image?.node?.sourceUrl;
+const imageAlt = image?.node?.altText || "";
 ---
 
-<div>
-  <h1>Melody</h1>
+<div class="melody">
+  <Wrapper classes="melody-wrapper">
+    <div class="melody-image">
+      <div class="melody-image-container">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+    </div>
+    <div class="melody-content">
+      <div class="melody-content-title">
+        <h2>{title}</h2>
+      </div>
+      <div class="melody-content-main" set:html={content} />
+    </div>
+  </Wrapper>
 </div>
