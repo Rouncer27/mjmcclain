@@ -1,7 +1,70 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/About/Hero/Hero.astro";
+import OurApproach from "../components/About/OurApproach/OurApproach.astro";
+import Melody from "../components/About/Melody/Melody.astro";
+import WorkWith from "../components/About/WorkWith/WorkWith.astro";
+import Callout from "../components/About/Callout/Callout.astro";
+
+import { Page_Seo_Query } from "../data/page/queries";
+import {
+  Hero_Query,
+  Our_Approach_Query,
+  Melody_Query,
+  Work_With_Query,
+  Callout_Query,
+} from "../data/about/queries";
+
+// 2️⃣ Get the actual page data by slug
+const { uri } = Astro.params;
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+		query helpTempQuery($slug: ID!) {
+			page(id: $slug, idType: URI) {
+				${Page_Seo_Query}
+        template {
+          ... on Template_About {
+            aboutPage {
+              ${Hero_Query}
+              ${Our_Approach_Query}
+              ${Melody_Query}
+              ${Work_With_Query}
+              ${Callout_Query}
+            }
+          }
+        }
+      }
+    }
+	`,
+    variables: { slug: `${uri}` },
+  }),
+});
+
+const {
+  data: {
+    page: {
+      seoMetaTags,
+      template: { aboutPage },
+    },
+  },
+} = await response.json();
 ---
 
-<Layout>
-  <h1>About Template</h1>
+<Layout
+  metaImg={seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={seoMetaTags.seoMetaInformation.metaDescription}
+  isHome={false}
+>
+  <Hero data={aboutPage.hero} />
+  <OurApproach data={aboutPage.ourApproach} />
+  <Melody data={aboutPage.melody} />
+  <WorkWith data={aboutPage.workWith} />
+  <Callout data={aboutPage.callout} />
 </Layout>
