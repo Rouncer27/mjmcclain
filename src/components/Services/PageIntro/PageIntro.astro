@@ -1,0 +1,35 @@
+---
+import "./pageIntro.scss";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import { Image } from "astro:assets";
+
+const { title, content, image } = Astro.props.data;
+
+const imageSrc = image?.node?.sourceUrl;
+const imageAlt = image?.node?.altText || "";
+---
+
+<div class="services-page-intro">
+  <Wrapper classes="services-page-intro-wrapper">
+    <div class="services-page-intro-content">
+      <div class="services-page-intro-content-title">
+        <h2>{title}</h2>
+      </div>
+      <div class="services-page-intro-content-main" set:html={content} />
+    </div>
+    <div class="services-page-intro-main">
+      <div class="services-page-intro-main-container">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+      </div>
+    </div>
+  </Wrapper>
+</div>

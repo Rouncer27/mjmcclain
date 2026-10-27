@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Services/Hero/Hero.astro";
+import PageIntro from "../components/Services/PageIntro/PageIntro.astro";
+import Services from "../components/Services/Services/Services.astro";
 import Callout from "../components/Services/Callout/Callout.astro";
 
 import { Page_Seo_Query } from "../data/page/queries";
@@ -58,5 +60,7 @@ const {
   isHome={false}
 >
   <Hero data={servicesTemplate.hero} />
+  <PageIntro data={servicesTemplate.pageIntro} />
+  <Services data={servicesTemplate.services} />
   <Callout data={servicesTemplate.callout} />
 </Layout>
