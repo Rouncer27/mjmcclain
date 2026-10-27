@@ -1,0 +1,69 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.our-approach {
+  margin-top: 7.5rem;
+
+  &-wrapper {
+    max-width: 120rem !important;
+  }
+
+  &-main {
+    width: calc(100%);
+    padding: 0 4rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      width: calc(40% - 4rem);
+      margin-left: 4rem;
+      margin-top: 7.5rem;
+      margin-bottom: 0;
+      padding: 0;
+    }
+
+    &-container {
+      position: relative;
+    }
+
+    &-graphic {
+      position: absolute;
+      width: 80%;
+      height: 100%;
+      top: -2.5rem;
+      right: -2.5rem;
+      background-color: $primaryColor;
+      z-index: -1;
+    }
+  }
+
+  &-content {
+    width: calc(100%);
+    margin-top: 3rem;
+
+    @media (min-width: 768px) {
+      width: calc(60% - 4rem);
+      margin-top: 0;
+      margin-right: 4rem;
+    }
+
+    &-title {
+      width: 100%;
+
+      h2 {
+        @extend .hl-two;
+        margin-top: 0;
+        color: $tertiaryColor;
+        font-weight: 600;
+      }
+    }
+
+    &-main {
+      width: 100%;
+
+      p {
+        @extend .p-one;
+      }
+    }
+  }
+}

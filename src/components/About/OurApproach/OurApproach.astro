@@ -1,7 +1,36 @@
 ---
 import "./ourApproach.scss";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import { Image } from "astro:assets";
+
+const { title, content, image } = Astro.props.data;
+
+const imageSrc = image?.node?.sourceUrl;
+const imageAlt = image?.node?.altText || "";
 ---
 
-<div>
-  <h1>Our Approach</h1>
+<div class="our-approach">
+  <Wrapper classes="our-approach-wrapper">
+    <div class="our-approach-content">
+      <div class="our-approach-content-title">
+        <h2>{title}</h2>
+      </div>
+      <div class="our-approach-content-main" set:html={content} />
+    </div>
+    <div class="our-approach-main">
+      <div class="our-approach-main-container">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+          class=""
+        />
+        <div class="our-approach-main-graphic"></div>
+      </div>
+    </div>
+  </Wrapper>
 </div>
