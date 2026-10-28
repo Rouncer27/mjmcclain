@@ -1,0 +1,11 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.article-image {
+  &-featured {
+    max-width: 100rem;
+    margin-left: 0;
+    margin-right: auto;
+  }
+}

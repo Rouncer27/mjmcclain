@@ -1,0 +1,52 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+.article-main {
+  &-title {
+    width: 100%;
+
+    h1 {
+      @extend .hl-two;
+      color: $shadowColor;
+      font-weight: 500;
+    }
+  }
+
+  &-content {
+    width: 100%;
+
+    p {
+      @extend .p-two;
+    }
+
+    .size-thumbnail {
+      max-width: 15rem;
+      max-height: 15rem;
+    }
+
+    .size-medium {
+      max-width: 25rem;
+    }
+
+    .size-large {
+      max-width: 85rem;
+    }
+
+    .size-full {
+      max-width: 100%;
+    }
+  }
+
+  &-navigation {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    border-top: 0.2rem solid $shadowColor;
+    text-align: center;
+
+    a {
+      @extend .p-two;
+      text-transform: uppercase;
+    }
+  }
+}

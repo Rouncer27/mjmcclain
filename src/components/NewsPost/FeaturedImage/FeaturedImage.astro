@@ -1,0 +1,29 @@
+---
+// @ts-ignore
+// @ts-nocheck
+import { Image } from "astro:assets";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import "./featuredImage.scss";
+
+const { image } = Astro.props;
+const imageSrc = image?.sourceUrl;
+const imageAlt = image?.altText || "";
+---
+
+<div class="article-image">
+  <Wrapper>
+    <div class="article-image-featured">
+      <div class="article-image-featured-container">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          format="webp"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          inferSize={true}
+        />
+      </div>
+    </div>
+  </Wrapper>
+</div>

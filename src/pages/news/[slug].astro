@@ -1,0 +1,99 @@
+---
+// @ts-ignore
+// @ts-nocheck
+import Layout from "../../layouts/Layout.astro";
+import FeaturedImage from "../../components/NewsPost/FeaturedImage/FeaturedImage.astro";
+import MainContent from "../../components/NewsPost/MainContent/MainContent.astro";
+
+import { Page_Seo_Query } from "../../data/page/queries";
+
+import {
+  Post_Featured_Image_Query,
+  Main_Content_Query,
+} from "../../data/newsPost/queries";
+
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query postQuery {
+            posts(first: 999999) {
+                nodes {
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const allPosts = data.posts.nodes;
+  return allPosts.map((post, index) => {
+    return {
+      params: { slug: `${post.slug}` },
+      props: {
+        next:
+          index === 0
+            ? null
+            : {
+                slug: allPosts[index - 1].slug,
+                title: allPosts[index - 1].title,
+              },
+        prev:
+          index === allPosts.length - 1
+            ? null
+            : {
+                slug: allPosts[index + 1].slug,
+                title: allPosts[index + 1].title,
+              },
+      },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query postQuery($id: ID!) {
+        post(idType: SLUG, id: $id) {
+          ${Page_Seo_Query}
+          title
+          date
+          slug
+          postType {
+            ${Post_Featured_Image_Query}
+            ${Main_Content_Query}
+          }
+        }
+    }
+    `,
+    variables: {
+      id: Astro.params["slug"],
+    },
+  }),
+});
+
+const {
+  data: { post },
+} = await response.json();
+---
+
+<Layout
+  metaImg={post.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={post.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={post.seoMetaTags.seoMetaInformation.metaDescription}
+  isHome={false}
+>
+  <FeaturedImage image={post.postType.featuredImage.node} />
+  <MainContent title={post.title} content={post.postType.mainContent} />
+</Layout>

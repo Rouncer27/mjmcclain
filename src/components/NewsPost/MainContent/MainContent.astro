@@ -1,0 +1,21 @@
+---
+import Wrapper from "../../common/shared/Wrapper.astro";
+import Wysiwyg from "../../common/shared/Wysiwyg.astro";
+import "./mainContent.scss";
+
+const { title, content } = Astro.props;
+---
+
+<div class="article-main">
+  <Wrapper>
+    <Wysiwyg>
+      <div class="article-main-title">
+        <h1>{title}</h1>
+      </div>
+      <div class="article-main-content" set:html={content} />
+    </Wysiwyg>
+    <div class="article-main-navigation">
+      <a href="/resources">Back to All Resources</a>
+    </div>
+  </Wrapper>
+</div>
