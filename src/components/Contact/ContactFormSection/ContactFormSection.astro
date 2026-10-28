@@ -6,12 +6,14 @@ import ContactForm from "../../common/sharedReact/ContactForm/ContactForm.jsx";
 
 <div class="contact-form-section">
   <Wrapper classes="contact-form-section-wrapper">
-    <div class="contact-form-section-intro">
+    <div class="contact-form-section-intro" data-animate="fade-up">
       <p>
         Have a question or want to get in touch?<br />
         Send us a message and we’ll be happy to get back to you.
       </p>
     </div>
-    <ContactForm client:only="react" />
+    <div class="contact-form-section-form" data-animate="fade-up">
+      <ContactForm client:only="react" />
+    </div>
   </Wrapper>
 </div>

@@ -55,11 +55,27 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
     <meta name="twitter:image" content={imgSrc} />
     <meta name="twitter:image:alt" content={description} />
     <meta name="twitter:creator" content={"MJ McClain Accounting"} />
+
+    <!-- Animations: hide animated elements only when motion is allowed, and show
+         everything again if the animation script hasn't loaded within 3 seconds -->
+    <script is:inline>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("has-animations");
+        setTimeout(() => {
+          if (!window.__animationsReady) {
+            document.documentElement.classList.remove("has-animations");
+          }
+        }, 3000);
+      }
+    </script>
   </head>
   <body>
     <Header />
     <slot />
     <!-- <CookieConsent client:only="react" /> -->
     <Footer />
+    <script>
+      import "../utils/animations.js";
+    </script>
   </body>
 </html>

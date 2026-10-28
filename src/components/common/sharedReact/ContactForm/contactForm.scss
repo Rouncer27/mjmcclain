@@ -42,6 +42,17 @@
           background-color: $whiteColor;
           border-color: $whiteColor;
           color: $tertiaryColor;
+          transform: translateY(-0.2rem);
+        }
+
+        &:disabled:hover {
+          transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          &:hover {
+            transform: none;
+          }
         }
       }
     }

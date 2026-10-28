@@ -10,7 +10,7 @@ const images = [imageOne, imageTwo, imageThree]
   .filter((node) => node?.sourceUrl);
 ---
 
-<div class="image-row">
+<div class="image-row" data-animate="stagger">
   {
     images.map((image) => (
       <div class="image-row-item">

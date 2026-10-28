@@ -10,16 +10,18 @@ const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 
 <div class="contact-information">
   <Wrapper classes="contact-information-wrapper">
-    <p>
-      <a href={mapHref} target="_blank" rel="noopener noreferrer">
-        {address}
-      </a>
-    </p>
-    <p>
-      Phone <a href={phoneHref}>{phoneNumber}</a>
-    </p>
-    <p>
-      Email <a href={`mailto:${email}`}>{email}</a>
-    </p>
+    <div class="contact-information-lines" data-animate="stagger">
+      <p>
+        <a href={mapHref} target="_blank" rel="noopener noreferrer">
+          {address}
+        </a>
+      </p>
+      <p>
+        Phone <a href={phoneHref}>{phoneNumber}</a>
+      </p>
+      <p>
+        Email <a href={`mailto:${email}`}>{email}</a>
+      </p>
+    </div>
   </Wrapper>
 </div>

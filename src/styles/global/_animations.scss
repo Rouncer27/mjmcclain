@@ -1,0 +1,9 @@
+// Starting state for elements animated by src/utils/animations.js.
+// Only applied once Layout.astro adds .has-animations, so content stays
+// visible when JavaScript is off or the visitor prefers reduced motion.
+.has-animations {
+  [data-animate="fade-up"],
+  [data-animate="stagger"] > * {
+    opacity: 0;
+  }
+}
