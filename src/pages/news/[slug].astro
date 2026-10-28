@@ -4,6 +4,7 @@
 import Layout from "../../layouts/Layout.astro";
 import FeaturedImage from "../../components/NewsPost/FeaturedImage/FeaturedImage.astro";
 import MainContent from "../../components/NewsPost/MainContent/MainContent.astro";
+import PostNavigation from "../../components/NewsPost/PostNavigation/PostNavigation.astro";
 
 import { Page_Seo_Query } from "../../data/page/queries";
 
@@ -25,6 +26,7 @@ export async function getStaticPaths() {
                 nodes {
                     slug
                     uri
+                    title
                 }
             }
         }
@@ -86,6 +88,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { post },
 } = await response.json();
+
+const { prev, next } = Astro.props;
 ---
 
 <Layout
@@ -96,4 +100,5 @@ const {
 >
   <FeaturedImage image={post.postType.featuredImage.node} />
   <MainContent title={post.title} content={post.postType.mainContent} />
+  <PostNavigation prev={prev} next={next} />
 </Layout>

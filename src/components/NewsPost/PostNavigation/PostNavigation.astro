@@ -1,0 +1,36 @@
+---
+import Wrapper from "../../common/shared/Wrapper.astro";
+import "./postNavigation.scss";
+
+const { prev, next } = Astro.props;
+---
+
+<div class="post-navigation">
+  <Wrapper>
+    <nav class="post-navigation-container" aria-label="Post navigation">
+      <div class="post-navigation-prev">
+        {
+          prev && (
+            <a href={`/news/${prev.slug}`}>
+              <span class="post-navigation-label">Previous Post</span>
+              <span class="post-navigation-title" set:html={prev.title} />
+            </a>
+          )
+        }
+      </div>
+      <div class="post-navigation-all">
+        <a href="/news">Back to All News Posts</a>
+      </div>
+      <div class="post-navigation-next">
+        {
+          next && (
+            <a href={`/news/${next.slug}`}>
+              <span class="post-navigation-label">Next Post</span>
+              <span class="post-navigation-title" set:html={next.title} />
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </Wrapper>
+</div>

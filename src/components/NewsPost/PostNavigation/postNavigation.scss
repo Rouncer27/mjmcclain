@@ -1,0 +1,73 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/paragraphs";
+.post-navigation {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    border-top: 0.2rem solid $shadowColor;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    a {
+      @extend .p-two;
+      text-transform: uppercase;
+    }
+  }
+
+  &-prev,
+  &-next {
+    @media (min-width: 768px) {
+      width: calc(33.333% - 1.333rem);
+    }
+
+    &:empty {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: block;
+      }
+    }
+
+    a {
+      display: block;
+    }
+  }
+
+  &-prev {
+    @media (min-width: 768px) {
+      text-align: left;
+    }
+  }
+
+  &-next {
+    @media (min-width: 768px) {
+      text-align: right;
+    }
+  }
+
+  &-all {
+    @media (min-width: 768px) {
+      width: calc(33.333% - 1.333rem);
+    }
+  }
+
+  &-label {
+    display: block;
+    color: $shadowColor;
+    font-weight: 500;
+  }
+
+  &-title {
+    display: block;
+    text-transform: none;
+  }
+}
