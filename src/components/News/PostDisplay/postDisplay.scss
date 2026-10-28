@@ -1,0 +1,84 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+@use "../../../styles/global/buttons";
+
+.resources-post-display {
+  &-wrapper {
+    justify-content: flex-start !important;
+  }
+
+  &-post {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc((100% / 3) - 1rem);
+    margin: 2rem 0.5rem;
+
+    &-image {
+      position: relative;
+      width: calc(100%);
+      min-height: 37.5rem;
+
+      @media (min-width: 768px) {
+        width: calc(100%);
+      }
+
+      &-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          z-index: 1;
+        }
+      }
+    }
+
+    &-intro {
+      position: relative;
+      width: calc(100%);
+      padding: 4rem;
+      padding-bottom: 6rem;
+      background-color: $secondaryColor;
+
+      @media (min-width: 768px) {
+        width: calc(100%);
+      }
+
+      &-title {
+        h2 {
+          @extend .p-one;
+          color: $whiteColor;
+          font-weight: 600;
+        }
+      }
+
+      &-excerpt {
+        p {
+          @extend .p-two;
+          color: $whiteColor;
+        }
+      }
+
+      &-link {
+        position: absolute;
+        bottom: 2rem;
+        left: 4rem;
+
+        a {
+          @extend .btn-three;
+        }
+      }
+    }
+  }
+}

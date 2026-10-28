@@ -1,7 +1,56 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/News/Hero/Hero.astro";
+import PostDisplay from "../components/News/PostDisplay/PostDisplay.astro";
+
+import { Page_Seo_Query } from "../data/page/queries";
+import { Hero_Query, All_posts_Query } from "../data/news/queries";
+
+// 2️⃣ Get the actual page data by slug
+const { uri } = Astro.params;
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+		query newsQuery($slug: ID!) {
+			page(id: $slug, idType: URI) {
+				${Page_Seo_Query}
+        template {
+          ... on Template_News {
+            newsTemplate {
+              ${Hero_Query}
+            }
+          }
+        }
+      }
+      ${All_posts_Query}
+    }
+	`,
+    variables: { slug: `${uri}` },
+  }),
+});
+
+const {
+  data: {
+    posts,
+    page: {
+      seoMetaTags,
+      template: { newsTemplate },
+    },
+  },
+} = await response.json();
 ---
 
-<Layout>
-  <h1>News Temaplate</h1>
+<Layout
+  metaImg={seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={seoMetaTags.seoMetaInformation.metaDescription}
+  isHome={false}
+>
+  <Hero data={newsTemplate.hero} />
+  <PostDisplay posts={posts.edges} />
 </Layout>

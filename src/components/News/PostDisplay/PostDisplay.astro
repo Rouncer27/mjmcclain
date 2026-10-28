@@ -1,0 +1,47 @@
+---
+// @ts-ignore
+// @ts-nocheck
+import { Image } from "astro:assets";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import "./postDisplay.scss";
+
+const { posts } = Astro.props;
+---
+
+<div class="resources-post-display">
+  <Wrapper classes="resources-post-display-wrapper">
+    {posts.map((post, index) => {
+      const imageSrc = post.node.postType.featuredImage?.node?.sourceUrl;
+      const imageAlt = post.node.postType.featuredImage?.node?.altText || "";
+      return (
+        <div class={`resources-post-display-post`}>
+          <div class="resources-post-display-post-image">
+            <div class="resources-post-display-post-image-container">
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                format="webp"
+                widths={[800, 1200, 1600, 2000]}
+                sizes="100vw"
+                loading="eager"
+                inferSize={true}
+              />
+            </div>
+          </div>
+          <div class="resources-post-display-post-intro">
+            <div class="resources-post-display-post-intro-title">
+              <h2>{post.node.title}</h2>
+            </div>
+            <div
+              class="resources-post-display-post-intro-excerpt"
+              set:html={post.node.postType.excerpt}
+            />
+            <div class="resources-post-display-post-intro-link">
+              <a href={`/news/${post.node.slug}`}>Read</a>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </Wrapper>
+</div>

@@ -64,3 +64,17 @@
     color: $whiteColor;
   }
 }
+
+.btn-three {
+  @extend .btn;
+  background-color: $accentColor;
+  border-color: $accentColor;
+  color: $whiteColor;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+    color: $whiteColor;
+  }
+}
