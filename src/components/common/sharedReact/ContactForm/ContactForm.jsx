@@ -88,7 +88,7 @@ const ContactForm = () => {
             id="firstName"
             type="text"
             size="half"
-            placeholder="First Name"
+            placeholder=""
             required={true}
             error={formStatus.errors.find(
               (error) => error.idref === "firstName",
@@ -101,10 +101,23 @@ const ContactForm = () => {
             id="lastName"
             type="text"
             size="half"
-            placeholder="Last Name"
+            placeholder=""
             required={true}
             error={formStatus.errors.find(
               (error) => error.idref === "lastName",
+            )}
+          />
+          <Input
+            handler={(event) => handleOnChange(event, setFormData, formData)}
+            value={formData.yourEmail}
+            label="Email"
+            id="yourEmail"
+            type="email"
+            size="half"
+            placeholder=""
+            required={true}
+            error={formStatus.errors.find(
+              (error) => error.idref === "yourEmail",
             )}
           />
           <Input
@@ -114,32 +127,19 @@ const ContactForm = () => {
             id="phone"
             type="text"
             size="half"
-            placeholder="Phone Number"
+            placeholder=""
             required={true}
             error={formStatus.errors.find((error) => error.idref === "phone")}
-          />
-          <Input
-            handler={(event) => handleOnChange(event, setFormData, formData)}
-            value={formData.yourEmail}
-            label="Email"
-            id="yourEmail"
-            type="email"
-            size="half"
-            placeholder="Email"
-            required={true}
-            error={formStatus.errors.find(
-              (error) => error.idref === "yourEmail",
-            )}
           />
           <Textarea
             handler={(event) => handleOnChange(event, setFormData, formData)}
             value={formData.comments}
-            label="Comments"
+            label="How can we help?"
             id="comments"
             size="full"
-            placeholder="Comments"
+            placeholder=""
             required={true}
-            rows="10"
+            rows="8"
             error={formStatus.errors.find(
               (error) => error.idref === "comments",
             )}
@@ -154,7 +154,7 @@ const ContactForm = () => {
           )}
           <ReCAPTCHA
             ref={recaptchaRef}
-            sitekey={`6Lcgb4ksAAAAADQGNBqcN4SLp-Wnta2ZaLmCc5bU`}
+            sitekey={`XXXXXXXXXXXXX`}
             onChange={onChangeRecaptcha}
             onExpired={() => setIsCaptchaVerified(false)}
           />
@@ -166,7 +166,7 @@ const ContactForm = () => {
             disabled={!isCaptchaVerified || formStatus.submitting}
             type="submit"
           >
-            Send Message
+            Send
           </button>
         </div>
       </form>

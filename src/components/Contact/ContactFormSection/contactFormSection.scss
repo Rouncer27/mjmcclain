@@ -1,0 +1,23 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/paragraphs";
+
+.contact-form-section {
+  width: 100%;
+  padding: 2rem 0 7.5rem;
+  background-color: $primaryColor;
+
+  &-wrapper {
+    justify-content: flex-start !important;
+  }
+
+  &-intro {
+    width: 100%;
+    margin-bottom: 4rem;
+
+    p {
+      @extend .p-two;
+      margin: 0;
+      color: $whiteColor;
+    }
+  }
+}

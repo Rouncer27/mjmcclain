@@ -1,9 +1,10 @@
+@use "../../../../styles/abstracts/" as *;
 @use "../../../../styles/global/buttons.scss";
+@use "../../../../styles/global/paragraphs.scss";
 
 .contact-form {
   width: 100%;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  max-width: 97.5rem;
 
   &-fields {
     width: 100%;
@@ -20,13 +21,28 @@
 
     .captcha-container {
       margin-bottom: 2.5rem;
+
+      p {
+        @extend .p-three;
+        color: $whiteColor;
+      }
     }
 
     &-button {
       width: 100%;
 
       button {
-        @extend .btn-one;
+        @extend .btn-three;
+        @extend .p-three;
+        padding: 0.8rem 4rem;
+        color: $whiteColor;
+        box-shadow: none;
+
+        &:hover {
+          background-color: $whiteColor;
+          border-color: $whiteColor;
+          color: $tertiaryColor;
+        }
       }
     }
   }

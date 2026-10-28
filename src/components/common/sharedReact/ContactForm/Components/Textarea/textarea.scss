@@ -18,11 +18,16 @@
   }
 
   label {
-    @extend .p-one;
+    @extend .p-three;
     display: block;
     width: 100%;
-    padding-left: 1.5rem;
-    color: $blackColor;
+    margin-bottom: 0.5rem;
+    color: $whiteColor;
+    text-transform: uppercase;
+
+    .required {
+      display: none;
+    }
 
     &:hover {
       cursor: initial;
@@ -39,8 +44,9 @@
     .error-active {
       @extend .p-two;
       display: inline-block;
-      color: red;
-      padding-left: 2rem;
+      color: #ffb4a8;
+      padding-left: 1rem;
+      text-transform: none;
     }
   }
 
@@ -51,8 +57,13 @@
     padding: 1rem 1.5rem;
     border: 0.1rem solid transparent;
     border-radius: 0;
-    background-color: #fff7eb;
+    background-color: rgba($whiteColor, 0.5);
     color: $blackColor;
+  }
+
+  textarea:focus {
+    outline: 0.2rem solid $tertiaryColor;
+    outline-offset: 0;
   }
 
   textarea::placeholder {

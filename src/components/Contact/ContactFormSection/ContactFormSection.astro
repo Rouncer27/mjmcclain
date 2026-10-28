@@ -1,0 +1,17 @@
+---
+import "./contactFormSection.scss";
+import Wrapper from "../../common/shared/Wrapper.astro";
+import ContactForm from "../../common/sharedReact/ContactForm/ContactForm.jsx";
+---
+
+<div class="contact-form-section">
+  <Wrapper classes="contact-form-section-wrapper">
+    <div class="contact-form-section-intro">
+      <p>
+        Have a question or want to get in touch?<br />
+        Send us a message and we’ll be happy to get back to you.
+      </p>
+    </div>
+    <ContactForm client:only="react" />
+  </Wrapper>
+</div>
