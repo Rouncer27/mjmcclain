@@ -1,0 +1,28 @@
+// Native cross-document page transitions (no JavaScript).
+// Browsers without support simply navigate normally.
+// To remove: delete this file and its @forward in global/_index.scss.
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+// Page content crossfades
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+
+// Keep the header still while the page underneath changes
+.main-header {
+  view-transition-name: site-header;
+}
+
+::view-transition-group(site-header) {
+  animation-duration: 0.3s;
+}
