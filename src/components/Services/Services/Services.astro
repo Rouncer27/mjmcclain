@@ -1,7 +1,48 @@
 ---
+// @ts-nocheck
+import Wrapper from "../../common/shared/Wrapper.astro";
+import { Image } from "astro:assets";
 import "./services.scss";
+
+const { title, servicesList, outro } = Astro.props.data;
 ---
 
-<div>
-  <h1>Services</h1>
+<div class="services">
+  <Wrapper classes="services-wrapper">
+    <div class="services-title">
+      <h2>{title}</h2>
+    </div>
+    <div class="services-list">
+      {servicesList.map((service, index) => {
+        const imageSrc = service?.icon?.node?.sourceUrl;
+        const imageAlt = service?.icon?.node?.altText || "";
+        return (
+          <div class="services-list-item">
+            <div class="services-list-item-icon">
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                format="webp"
+                widths={[800, 1200, 1600, 2000]}
+                sizes="100vw"
+                loading="eager"
+                inferSize={true}
+                class=""
+              />
+            </div>
+            <div class="services-list-item-content">
+              <div>
+                <h3>
+                  <span>{index + 1}. </span>
+                  {service.title}
+                </h3>
+              </div>
+              <div set:html={service.description} />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+    <div class="services-outro" set:html={outro} />
+  </Wrapper>
 </div>
