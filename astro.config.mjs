@@ -16,7 +16,6 @@ export default defineConfig({
   site: "https://mjmcclain.netlify.app/",
   integrations: [react(), sitemap()],
   image: {
-    domains: ["mjmclain.swbdatabases3.ca/"],
-    remotePatterns: [{ protocol: "https" }],
+    domains: ["mjmclain.swbdatabases3.ca"],
   },
 });

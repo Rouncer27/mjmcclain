@@ -1,0 +1,31 @@
+---
+import "./imageRow.scss";
+import { Image } from "astro:assets";
+
+const { imageOne, imageTwo, imageThree } = Astro.props.data;
+
+// Skip any image left empty in WordPress so the row never breaks the build
+const images = [imageOne, imageTwo, imageThree]
+  .map((image) => image?.node)
+  .filter((node) => node?.sourceUrl);
+---
+
+<div class="image-row">
+  {
+    images.map((image) => (
+      <div class="image-row-item">
+        <Image
+          src={image.sourceUrl}
+          alt={image.altText || ""}
+          width={image.mediaDetails?.width}
+          height={image.mediaDetails?.height}
+          format="webp"
+          quality="mid"
+          widths={[400, 800, 1200]}
+          sizes="(min-width: 768px) 33vw, 100vw"
+          loading="lazy"
+        />
+      </div>
+    ))
+  }
+</div>

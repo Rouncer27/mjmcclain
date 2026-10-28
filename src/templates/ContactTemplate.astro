@@ -3,11 +3,13 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Contact/Hero/Hero.astro";
 import ContactInformation from "../components/Contact/ContactInformation/ContactInformation.astro";
 import ContactFormSection from "../components/Contact/ContactFormSection/ContactFormSection.astro";
+import ImageRow from "../components/Contact/ImageRow/ImageRow.astro";
 
 import { Page_Seo_Query } from "../data/page/queries";
 import {
   Hero_Query,
   Contact_Information_Query,
+  Image_Row_Query,
 } from "../data/contact/queries";
 
 // 2️⃣ Get the actual page data by slug
@@ -27,6 +29,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
           ... on Template_Contact {
             contactTemplate {
               ${Hero_Query}
+              ${Image_Row_Query}
             }
           }
         }
@@ -58,4 +61,5 @@ const {
   <Hero data={contactTemplate.hero} />
   <ContactInformation data={contactInformation} />
   <ContactFormSection />
+  <ImageRow data={contactTemplate.imageRow} />
 </Layout>

@@ -23,3 +23,38 @@ export const Contact_Information_Query = `
         }
     }
 `;
+
+export const Image_Row_Query = `
+    imageRow: imageRowComponent {
+        imageOne {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+        imageTwo {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+        imageThree {
+            node {
+                sourceUrl
+                altText
+                mediaDetails {
+                    width
+                    height
+                }
+            }
+        }
+    }
+`;
