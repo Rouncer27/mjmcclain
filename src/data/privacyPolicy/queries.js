@@ -1,8 +1,7 @@
-export const Hero_Intro_Query = `
-   	 heroIntro: heroIntroComponent {
-        title
-        content
-        image {
+export const Hero_Query = `
+    hero: heroComponent {
+        heroTitle
+        heroImage {
             node {
                 sourceUrl
                 altText

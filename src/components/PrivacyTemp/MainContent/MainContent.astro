@@ -9,11 +9,19 @@ const { title, content } = Astro.props.data;
 
 <div class="main-content">
   <Wrapper classes="main-content-wrapper">
-    <div class="main-content-title">
-      <h2>{title}</h2>
-    </div>
+    {
+      title && (
+        <div class="main-content-title" data-animate="fade-up">
+          <h2>{title}</h2>
+        </div>
+      )
+    }
     <Wysiwyg>
-      <div class="main-content-wysiwyg" set:html={content} />
+      <div
+        class="main-content-wysiwyg"
+        data-animate="fade-up"
+        set:html={content}
+      />
     </Wysiwyg>
   </Wrapper>
 </div>

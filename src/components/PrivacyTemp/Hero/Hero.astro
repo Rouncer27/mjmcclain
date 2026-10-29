@@ -1,0 +1,36 @@
+---
+import "./hero.scss";
+import { Image } from "astro:assets";
+
+const { heroImage, heroTitle } = Astro.props.data;
+
+const image = heroImage?.node;
+---
+
+<div class="privacy-hero">
+  <div class="privacy-hero-background">
+    {
+      image?.sourceUrl && (
+        <Image
+          src={image.sourceUrl}
+          alt={image.altText || ""}
+          width={image.mediaDetails?.width}
+          height={image.mediaDetails?.height}
+          format="webp"
+          quality="mid"
+          widths={[800, 1200, 1600, 2000]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
+    }
+  </div>
+  <div class="privacy-hero-content">
+    <div class="privacy-hero-content-container">
+      <div class="privacy-hero-content-container-title" data-animate="fade-up">
+        <h1 set:html={heroTitle} />
+      </div>
+    </div>
+  </div>
+</div>
