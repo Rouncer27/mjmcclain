@@ -11,21 +11,21 @@ const imageAlt = image?.node?.altText || "";
 
 <div class="services-page-intro">
   <Wrapper classes="services-page-intro-wrapper">
-    <div class="services-page-intro-content">
+    <div class="services-page-intro-content" data-animate="stagger">
       <div class="services-page-intro-content-title">
         <h2>{title}</h2>
       </div>
       <div class="services-page-intro-content-main" set:html={content} />
     </div>
-    <div class="services-page-intro-main">
+    <div class="services-page-intro-main" data-animate="fade-up">
       <div class="services-page-intro-main-container">
         <Image
           src={imageSrc}
           alt={imageAlt}
           format="webp"
-          widths={[800, 1200, 1600, 2000]}
-          sizes="100vw"
-          loading="eager"
+          widths={[600, 900, 1200, 1800]}
+          sizes="(min-width: 768px) 900px, 100vw"
+          loading="lazy"
           inferSize={true}
           class=""
         />

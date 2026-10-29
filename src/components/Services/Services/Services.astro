@@ -9,7 +9,7 @@ const { title, servicesList, outro } = Astro.props.data;
 
 <div class="services">
   <Wrapper classes="services-wrapper">
-    <div class="services-title">
+    <div class="services-title" data-animate="fade-up">
       <h2>{title}</h2>
     </div>
     <div class="services-list">
@@ -17,15 +17,15 @@ const { title, servicesList, outro } = Astro.props.data;
         const imageSrc = service?.icon?.node?.sourceUrl;
         const imageAlt = service?.icon?.node?.altText || "";
         return (
-          <div class="services-list-item">
+          <div class="services-list-item" data-animate="fade-up">
             <div class="services-list-item-icon">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
                 format="webp"
-                widths={[800, 1200, 1600, 2000]}
-                sizes="100vw"
-                loading="eager"
+                widths={[160, 320]}
+                sizes="160px"
+                loading="lazy"
                 inferSize={true}
                 class=""
               />
@@ -43,6 +43,6 @@ const { title, servicesList, outro } = Astro.props.data;
         );
       })}
     </div>
-    <div class="services-outro" set:html={outro} />
+    <div class="services-outro" data-animate="fade-up" set:html={outro} />
   </Wrapper>
 </div>

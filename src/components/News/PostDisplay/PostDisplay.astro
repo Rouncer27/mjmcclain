@@ -14,16 +14,16 @@ const { posts } = Astro.props;
       const imageSrc = post.node.postType.featuredImage?.node?.sourceUrl;
       const imageAlt = post.node.postType.featuredImage?.node?.altText || "";
       return (
-        <div class={`resources-post-display-post`}>
+        <div class={`resources-post-display-post`} data-animate="fade-up">
           <div class="resources-post-display-post-image">
             <div class="resources-post-display-post-image-container">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
                 format="webp"
-                widths={[800, 1200, 1600, 2000]}
-                sizes="100vw"
-                loading="eager"
+                widths={[400, 800, 1200]}
+                sizes="(min-width: 768px) 33vw, 100vw"
+                loading="lazy"
                 inferSize={true}
               />
             </div>
