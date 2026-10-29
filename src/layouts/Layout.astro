@@ -2,6 +2,7 @@
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import CookieConsent from "../components/common/sharedReact/CookieConsent/CookieContent";
+import LocalBusinessSchema from "../components/common/Seo/LocalBusinessSchema.astro";
 // Import Global Styles
 import "../styles/styles.scss";
 // Import Fonts
@@ -55,6 +56,8 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
     <meta name="twitter:image" content={imgSrc} />
     <meta name="twitter:image:alt" content={description} />
     <meta name="twitter:creator" content={"MJ McClain Accounting"} />
+    <!-- Structured Data -->
+    <LocalBusinessSchema />
 
     <!-- Animations: hide animated elements only when motion is allowed, and show
          everything again if the animation script hasn't loaded within 3 seconds -->

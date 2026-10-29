@@ -61,12 +61,12 @@ const { isHome } = Astro.props;
 <header class={`main-header${isHome ? " main-header-float" : ""}`}>
   <Wrapper classes="main-header-wrapper">
     <div class="main-header-logo">
-      <h1>
+      <div class="main-header-logo-title">
         <a href="/">
           <MainLogo data={logoOptions} />
         </a>
         <span>MJ McClain</span>
-      </h1>
+      </div>
     </div>
     <div class="main-header-navigation">
       <MainNav

@@ -1,0 +1,77 @@
+---
+import { baseData } from "../../../data/siteData";
+import { Local_Business_Query } from "../../../data/seo/queries";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+      query localBusinessQuery {
+        ${Local_Business_Query}
+      }
+    `,
+  }),
+});
+
+const {
+  data: {
+    localBusiness: { contactInformation, socialMedia, logoOptions },
+  },
+} = await response.json();
+
+const siteUrl = Astro.site?.href ?? baseData.url;
+const { address, phoneNumber, email } = contactInformation ?? {};
+
+// WordPress stores the address as one line, e.g. "105, 132 - 1 Ave NW. Airdrie, AB T4B 3H4".
+// Split it into schema.org parts, or fall back to the full line if it doesn't match.
+const addressParts = address?.match(
+  /^(.*)[.,]\s*([^.,]+),\s*([A-Z]{2})\s+([A-Z]\d[A-Z]\s?\d[A-Z]\d)$/,
+);
+const postalAddress = addressParts
+  ? {
+      streetAddress: addressParts[1].trim(),
+      addressLocality: addressParts[2].trim(),
+      addressRegion: addressParts[3],
+      postalCode: addressParts[4],
+    }
+  : { streetAddress: address };
+
+const phoneDigits = phoneNumber?.replace(/\D/g, "");
+const telephone =
+  phoneDigits?.length === 10
+    ? `+1-${phoneDigits.slice(0, 3)}-${phoneDigits.slice(3, 6)}-${phoneDigits.slice(6)}`
+    : phoneNumber;
+
+// Only real profile links, not placeholders like "https://www.facebook.com"
+const sameAs = Object.values(socialMedia ?? {}).filter((link) => {
+  try {
+    return new URL(link).pathname.length > 1;
+  } catch {
+    return false;
+  }
+});
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "@id": `${siteUrl}#business`,
+  name: baseData.organizationName,
+  url: siteUrl,
+  logo: logoOptions?.mainLogo?.node?.sourceUrl,
+  image: baseData.siteImg,
+  telephone,
+  email,
+  address: address
+    ? { "@type": "PostalAddress", ...postalAddress, addressCountry: "CA" }
+    : undefined,
+  sameAs: sameAs.length ? sameAs : undefined,
+};
+
+// Escape "<" so content from WordPress can never close the script tag early
+const jsonLd = JSON.stringify(schema).replace(/</g, "\\u003c");
+---
+
+<script type="application/ld+json" is:inline set:html={jsonLd} />
