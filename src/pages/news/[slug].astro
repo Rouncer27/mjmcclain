@@ -93,7 +93,7 @@ const { prev, next } = Astro.props;
 ---
 
 <Layout
-  metaImg={post.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaImg={post.seoMetaTags.seoMetaInformation.metaImage?.node?.sourceUrl}
   metaTitle={post.seoMetaTags.seoMetaInformation.metaTitle}
   metaDescription={post.seoMetaTags.seoMetaInformation.metaDescription}
   isHome={false}
