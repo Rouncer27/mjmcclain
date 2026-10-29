@@ -11,7 +11,7 @@ const imageAlt = image?.node?.altText || "";
 
 <div class="melody">
   <Wrapper classes="melody-wrapper">
-    <div class="melody-image">
+    <div class="melody-image" data-animate="fade-up">
       <div class="melody-image-container">
         <Image
           src={imageSrc}
@@ -25,7 +25,7 @@ const imageAlt = image?.node?.altText || "";
         />
       </div>
     </div>
-    <div class="melody-content">
+    <div class="melody-content" data-animate="stagger">
       <div class="melody-content-title">
         <h2>{title}</h2>
       </div>

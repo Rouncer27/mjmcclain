@@ -4,6 +4,7 @@ import Hero from "../components/Contact/Hero/Hero.astro";
 import ContactInformation from "../components/Contact/ContactInformation/ContactInformation.astro";
 import ContactFormSection from "../components/Contact/ContactFormSection/ContactFormSection.astro";
 import ImageRow from "../components/Contact/ImageRow/ImageRow.astro";
+import LocationMap from "../components/Contact/LocationMap/LocationMap.astro";
 
 import { Page_Seo_Query } from "../data/page/queries";
 import {
@@ -62,4 +63,5 @@ const {
   <ContactInformation data={contactInformation} />
   <ContactFormSection />
   <ImageRow data={contactTemplate.imageRow} />
+  <LocationMap data={contactInformation} />
 </Layout>

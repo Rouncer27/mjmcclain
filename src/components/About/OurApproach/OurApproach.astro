@@ -11,13 +11,13 @@ const imageAlt = image?.node?.altText || "";
 
 <div class="our-approach">
   <Wrapper classes="our-approach-wrapper">
-    <div class="our-approach-content">
+    <div class="our-approach-content" data-animate="stagger">
       <div class="our-approach-content-title">
         <h2>{title}</h2>
       </div>
       <div class="our-approach-content-main" set:html={content} />
     </div>
-    <div class="our-approach-main">
+    <div class="our-approach-main" data-animate="fade-up">
       <div class="our-approach-main-container">
         <Image
           src={imageSrc}

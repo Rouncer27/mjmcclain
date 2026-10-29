@@ -1,0 +1,22 @@
+---
+import "./locationMap.scss";
+
+const { address } = Astro.props.data;
+
+// Keyless Google Maps embed built from the WordPress address
+const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=15&output=embed`;
+---
+
+{
+  address && (
+    <div class="location-map">
+      <iframe
+        src={mapSrc}
+        title={`Map showing our office at ${address}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      />
+    </div>
+  )
+}

@@ -12,7 +12,7 @@ const imageAlt = image?.node?.altText || "";
 
 <div class="work-with">
   <Wrapper classes="work-with-wrapper">
-    <div class="work-with-content">
+    <div class="work-with-content" data-animate="stagger">
       <div class="work-with-content-title">
         <h2>{title}</h2>
       </div>
@@ -23,7 +23,7 @@ const imageAlt = image?.node?.altText || "";
         </Button>
       </div>
     </div>
-    <div class="work-with-image">
+    <div class="work-with-image" data-animate="fade-up">
       <div class="work-with-image-container">
         <Image
           src={imageSrc}
