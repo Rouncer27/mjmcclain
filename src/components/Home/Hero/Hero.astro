@@ -18,7 +18,7 @@ import Button from "../../common/shared/Button.astro";
 ---
 
 <div class="hero">
-  <div class="hero-background">
+  <div class="hero-background" data-animate="focus">
     <Image
       src={imageSrc}
       alt={imageAlt}
@@ -31,7 +31,7 @@ import Button from "../../common/shared/Button.astro";
     />
   </div>
   <div class="hero-content">
-    <div class="hero-content-container">
+    <div class="hero-content-container" data-animate="stagger">
       <div class="hero-content-container-title">
         <h2 set:html={heroTitle} />
         <h3 set:html={heroContentBig} />
@@ -46,15 +46,3 @@ import Button from "../../common/shared/Button.astro";
     </div>
   </div>
 </div>
-
-<script>
-  // @ts-nocheck
-  import { gsap } from "gsap";
-  const image = document.querySelectorAll(".hero-background img");
-  const tl = gsap.timeline();
-  tl.add("start").from(
-    image,
-    { filter: "blur(100px)", duration: 2.2 },
-    "start",
-  );
-</script>

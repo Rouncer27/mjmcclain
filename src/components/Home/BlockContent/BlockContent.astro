@@ -11,7 +11,7 @@ const imageAlt = icon?.node?.altText || "";
 
 <div class="block-content">
   <div class="block-content-wrapper">
-    <div class="block-content-icon">
+    <div class="block-content-icon" data-animate="fade-up">
       <div class="block-content-icon-container">
         <Image
           src={imageSrc}
@@ -29,7 +29,7 @@ const imageAlt = icon?.node?.altText || "";
       </div>
     </div>
 
-    <div class="block-content-main">
+    <div class="block-content-main" data-animate="stagger">
       <div class="block-content-main-content" set:html={content} />
       <div class="block-content-main-link">
         <Button ele="a" btnstyle="two" href={buttonLink.edges[0].node.uri}>

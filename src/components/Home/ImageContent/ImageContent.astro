@@ -14,7 +14,7 @@ const imageSecondaryAlt = imageSecondary?.node?.altText || "";
 
 <div class="image-content">
   <Wrapper classes="image-content-wrapper">
-    <div class="image-content-main">
+    <div class="image-content-main" data-animate="fade-up">
       <div class="image-content-main-container">
         <Image
           src={imageSrc}
@@ -29,7 +29,7 @@ const imageSecondaryAlt = imageSecondary?.node?.altText || "";
         <div class="image-content-main-graphic"></div>
       </div>
     </div>
-    <div class="image-content-content">
+    <div class="image-content-content" data-animate="stagger">
       <div class="image-content-content-title">
         <h2>{title}</h2>
       </div>

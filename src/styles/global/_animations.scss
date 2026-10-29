@@ -6,4 +6,10 @@
   [data-animate="stagger"] > * {
     opacity: 0;
   }
+
+  // Image stays soft (never hidden) until animations.js brings it into focus
+  [data-animate="focus"]:not(.is-focused) img {
+    filter: blur(20px);
+    transform: scale(1.05);
+  }
 }

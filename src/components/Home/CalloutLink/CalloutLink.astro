@@ -17,16 +17,20 @@ const imageTwoAlt = imageTwo?.node?.altText || "";
 
 <div class="callout">
   <Wrapper>
-    <div class="callout-title">
+    <div class="callout-title" data-animate="fade-up">
       <h2>{title}</h2>
     </div>
-    <div class="callout-content" set:html={content} />
-    <div class="callout-link">
+    <div
+      class="callout-content"
+      data-animate="fade-up"
+      data-animate-delay="0.12"
+      set:html={content} />
+    <div class="callout-link" data-animate="fade-up" data-animate-delay="0.24">
       <Button ele="a" btnstyle="one" href={buttonLink.edges[0].node.uri}>
         {buttonText}
       </Button>
     </div>
-    <div class="callout-images">
+    <div class="callout-images" data-animate="stagger">
       <div class="callout-images-one">
         <Image
           src={imageOneSrc}
